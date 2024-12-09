@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-type Props = {}
+type Props = Record<string, never>
 
 function Footer({ }: Props) {
     return (

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { portfolio_data } from '../constants/staticData';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { IoClose } from "react-icons/io5";
+// import { IoClose } from "react-icons/io5";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import '../globals.css';
@@ -10,7 +10,7 @@ import '../globals.css';
 // import required modules
 import { Navigation } from 'swiper/modules';
 
-type Props = {}
+type Props = Record<string, never>
 
 export default function Portfolio({ }: Props) {
 
@@ -58,7 +58,7 @@ export default function Portfolio({ }: Props) {
                 {/* นำ filteredData ที่ประกาศไว้ก่อนหน้า มาทำการ map แยก array */}
                 {filteredData.map((data, idx) => (
                     <div
-                        key={idx}
+                        key={data.id || idx}
                         onClick={() => { setOpenPopup(true); setModalID(data.id); console.log(modalID);
                          }} // setModalID ให้เป็น id ของ card ที่เรากด
                         className="w-full bg-transparent space-y-4 transition-shadow p-4 rounded-[15px] hover:bg-[linear-gradient(0deg,_var(--tw-gradient-stops))] from-[rgba(200,189,228,.55)_0%] to-[rgba(96,81,81,0.1)_64%] hover:shadow-[inset_0px_3px_3.9px_-2px_#ffff,0px_10px_30px_-5px_#ECF0FF]"
@@ -141,12 +141,12 @@ const FilterMenus = ({
     // Types ของแต่ละตัวแปร
     setFilter: (item: string) => void,
     Filter: string,
-    Menus: any[]
+    Menus: { name: string; category: string }[]
 }) => {
     return (
         <div className="flex flex-row flex-nowrap space-x-4">
             {/* Map เมนูแต่ละปุ่มออกมา */}
-            {Menus.length > 0 && Menus.map((menu, idx) => (
+            {Menus.length > 0 && Menus.map((menu) => (
                 <div
                     key={menu.name}
                     className={`group/filter-btn cursor-pointer py-1 px-4 w-[125px] text-center
